@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://jarrodharrington85-ux.github.io" crossorigin>
+<title>Re-register your business name | business.gov.ki</title>
+<style>
+  :root{
+    --green:#146151;--green-deep:#0d4a3e;--green-text:#1E5F53;--green-border:#002a2b;
+    --gold:#FFE066;--focus:#ffdd00;--blue:#0052cc;--blue-dark:#003d99;
+    --ink:#333;--muted:#666;--line:#ddd;--divider:#e5e7eb;
+    --wait-bg:#fff8e6;--wait-line:#d4a017;--wait-ink:#8a6d00;--wait-body:#5c4a12;
+    --imp-bg:#fff5f4;--imp-line:#d4351c;--imp-ink:#b00020;
+    --done-bg:#e8f5e9;
+    --footer:#222;
+    --col:680px;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);background:#fff;line-height:1.6;
+    -webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
+  a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+  a:hover{color:var(--blue-dark)}
+  .exticon{width:0.78em;height:0.78em;margin-left:4px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-0.08em}
+  .col{width:100%;max-width:var(--col);margin:0 auto;padding:0 20px}
+
+  header{background:var(--green);border-bottom:5px solid var(--green-border);position:sticky;top:0;z-index:100}
+  .head-inner{display:flex;align-items:center;gap:15px;max-width:1200px;margin:0 auto;padding:15px 0}
+  .brand{display:flex;align-items:center;gap:15px;text-decoration:none;min-width:0}
+  .crest{max-width:65px;max-height:65px;border-radius:50%;display:block;flex:0 0 auto}
+  .wordmark{display:block;color:var(--gold);font-weight:700;font-size:24px;line-height:1.1}
+  .ministry{display:block;color:#fff;font-weight:500;font-size:19px;line-height:1.2;margin-top:2px}
+  .home{margin-left:auto;background:#fff;color:var(--green);font-weight:700;font-size:16px;border-radius:6px;border:2px solid var(--green);padding:10px 20px;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+  .head-mobile{display:none}
+  .head-mobile a{display:flex;align-items:center;gap:8px;text-decoration:none;padding:14px 16px;min-height:48px;width:100%;-webkit-tap-highlight-color:rgba(255,255,255,.1)}
+  .head-mobile a:active{background:rgba(0,0,0,.15)}
+  .head-mobile svg{flex-shrink:0}
+  .head-mobile .mh-brand{color:var(--gold);font-weight:700;font-size:18px;letter-spacing:.01em}
+
+  main{flex:1 0 auto;padding:34px 0 60px}
+  .eyebrow{color:var(--muted);font-weight:700;font-size:13px;letter-spacing:.6px;text-transform:uppercase;margin:0 0 14px}
+  h1{color:var(--green-text);font-weight:750;font-size:30px;line-height:1.15;margin:0 0 18px}
+
+  /* start page */
+  .start p{margin:0 0 14px;font-size:18px;color:var(--ink)}
+  .start p.sub{color:#555}
+  .start strong{font-weight:700}
+  .overview{margin:0 0 16px;padding:0;list-style:none}
+  .overview li{display:flex;gap:16px}
+  .ov-rail{flex:0 0 36px;display:flex;justify-content:center;position:relative}
+  .overview li:not(:last-child) .ov-rail::before{content:'';position:absolute;left:50%;transform:translateX(-50%);top:18px;bottom:-2px;width:2px;background:var(--line)}
+  .ov-circle{width:36px;height:36px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;line-height:1;position:relative;z-index:1}
+  .ov-text{flex:1;min-width:0;font-size:18px;font-weight:700;color:var(--ink);line-height:1.3;padding:6px 0 20px}
+  .overview li:last-child .ov-text{padding-bottom:0}
+  .notice{margin:0 0 22px;border-left:5px solid var(--blue);background:#eef4fb;padding:16px 20px;border-radius:0 6px 6px 0}
+  .notice .nlbl{display:block;font-size:12px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--blue);margin-bottom:3px}
+  .notice p{margin:0;font-size:18px;color:#15467e;font-weight:700}
+  .due{color:var(--imp-line)}
+  .startbtn{display:inline-flex;align-items:center;gap:12px;background:var(--green);color:#fff;border:2px solid var(--green);border-radius:4px;padding:15px 28px;font-size:18px;font-weight:700;cursor:pointer;font-family:inherit;line-height:1.2;margin-top:12px}
+  .startbtn:hover{background:var(--green-deep);border-color:var(--green-deep);color:#fff}
+
+  /* interview */
+  .qstep{font-size:16px;color:var(--muted);font-weight:700;margin:0 0 10px}
+  .qtitle{font-weight:700;font-size:22px;color:var(--ink);margin:0;padding-bottom:14px;border-bottom:3px solid var(--blue)}
+  .qhelp{font-size:18px;color:#555;margin:12px 0 0}
+  .options{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+  .opt{display:flex;align-items:center;gap:14px;border:2px solid var(--line);border-radius:6px;padding:16px 18px;cursor:pointer;background:#fff;transition:border-color .12s,box-shadow .12s}
+  .opt:hover{border-color:#9ca3af}
+  .opt:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,82,204,.18)}
+  .opt.sel{border-color:var(--blue);background:#eaf4ff;box-shadow:inset 0 0 0 1px var(--blue)}
+  .qnote{margin-top:16px;border-left:4px solid var(--blue);background:#eef4fb;border-radius:0 6px 6px 0;padding:12px 16px;font-size:16px;color:#15467e}
+  .bn-hidden{display:none}
+  .opt input{width:20px;height:20px;accent-color:var(--blue);flex:0 0 auto;margin:0}
+  .opt span{font-size:18px}
+  .textfield{margin-top:20px}
+  .textfield input{width:100%;font-family:inherit;font-size:18px;padding:14px 16px;border:2px solid #949494;border-radius:6px}
+  .textfield input:focus{outline:3px solid var(--focus);outline-offset:0;border-color:var(--blue)}
+  .btn-row{display:flex;align-items:center;gap:14px;margin-top:32px}
+  .btn-spacer{flex:1}
+  .btn{font-weight:700;font-size:16px;border-radius:4px;padding:13px 26px;cursor:pointer;border:2px solid var(--blue);background:var(--blue);color:#fff;font-family:inherit;line-height:1;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+  .btn:hover{background:var(--blue-dark);border-color:var(--blue-dark);color:#fff}
+  .btn:focus-visible,.startbtn:focus-visible,.opt:has(input:focus-visible){outline:3px solid var(--focus);outline-offset:2px}
+  a:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  .btn[disabled]{opacity:.4;cursor:not-allowed}
+  .btn-ghost{background:#fff;color:var(--blue)}
+  .btn-ghost:hover{background:#f0f6ff;color:var(--blue-dark)}
+  .btn-green{background:var(--green);border-color:var(--green);color:#fff}
+  .btn-green:hover{background:var(--green-deep);border-color:var(--green-deep);color:#fff}
+
+  .hidden{display:none}
+
+  /* plan */
+  .journey{margin:14px 0 0}
+  .t-row{display:flex;gap:16px}
+  .t-rail{flex:0 0 36px;display:flex;justify-content:center;position:relative}
+  .t-row:not(:last-child) .t-rail::before{content:'';position:absolute;left:50%;transform:translateX(-50%);top:18px;bottom:-2px;width:2px;background:var(--line)}
+  .t-circle{width:36px;height:36px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;line-height:1;position:relative;z-index:1}
+  .t-content{flex:1;min-width:0;padding-bottom:28px}
+  .t-row:last-child .t-content{padding-bottom:0}
+  .t-content h3{margin:5px 0 8px;font-size:19px;font-weight:800;color:var(--ink)}
+  .t-content>p{margin:0 0 8px;font-size:17px;color:var(--ink)}
+  .t-content>p:last-child{margin-bottom:0}
+  .t-content .do-req{font-size:16px;color:var(--muted)}
+  .t-content .do-reason{font-size:17px;color:var(--ink);border-left:3px solid var(--line);padding-left:12px;margin-top:10px}
+
+  .wait{margin:14px 0 0;border-left:4px solid var(--wait-line);background:var(--wait-bg);border-radius:0 6px 6px 0;padding:14px 18px}
+  .wait .wlbl{font-size:14px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--wait-ink);margin:0 0 4px}
+  .wait p{margin:0;font-size:16px;color:var(--wait-body)}
+
+  .important{margin:14px 0 0;border:2px solid var(--imp-line);background:var(--imp-bg);border-radius:6px;padding:16px 18px}
+  .important .ilbl{font-size:14px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--imp-ink);margin:0 0 4px}
+  .important p{margin:0;font-size:17px;color:var(--ink);font-weight:600}
+
+  .done{margin:14px 0 0;border-left:4px solid var(--green);background:var(--done-bg);border-radius:0 6px 6px 0;padding:14px 18px}
+  .done .wlbl{font-size:14px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--green-deep);margin:0 0 4px}
+  .done p{margin:0;font-size:16px;color:#1d4f3f}
+
+  .annual{margin:24px 0 0;border-left:4px solid var(--wait-line);border-radius:0 6px 6px 0;padding:14px 18px;background:#fffdf7}
+  .annual h3{margin:0 0 6px;font-size:17px;color:var(--wait-ink);font-weight:700}
+  .annual p{margin:0;font-size:16px;color:#3a2f12}
+  .annual strong{font-weight:700}
+
+  .moredetail{margin:24px 0 0;font-size:16px;color:var(--ink)}
+  .actions{margin:24px 0 0;padding-top:24px;border-top:1px solid var(--divider);display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .startagain{font-size:16px;color:var(--blue)}
+  .pico{width:18px;height:18px;flex:0 0 auto}
+  .plan-due{margin:0 0 4px;font-size:17px;font-weight:600;color:var(--ink)}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:#1a1a1a;color:#fff;padding:12px 20px;border-radius:8px;font-size:15px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  footer{flex-shrink:0;background:var(--footer);color:#fff;padding:30px 15px 0;margin-top:auto}
+  .foot-wrap{max-width:1200px;margin:0 auto}
+  .foot-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+  .foot-min{font-weight:700;font-size:18px;color:#fff;line-height:1.3}
+  .foot-sup{font-weight:600;font-size:16px;color:#E0E0E0}
+  .foot-logo-row{display:flex;justify-content:flex-end;margin-bottom:25px}
+  .foot-logo{background:#fff;padding:12px 15px;display:inline-block;border-radius:4px}
+  .foot-logo img{max-height:55px;width:auto;display:block}
+  .foot-copy{margin-top:10px;padding-top:20px;border-top:1px solid #444;text-align:center;font-size:13px;color:#999;padding-bottom:20px}
+
+  @media (max-width:1230px){ .head-inner{padding:15px} }
+  @media (max-width:1000px){
+    .head-inner{display:none}
+    .head-mobile{display:block}
+    header{border-bottom-width:3px}
+    .foot-row{flex-direction:column;align-items:flex-start;gap:4px}
+    .foot-logo-row{justify-content:flex-start}
+  }
+  @media (max-width:600px){
+    .head-mobile a{padding:12px}
+    .head-mobile .mh-brand{font-size:16px}
+    footer{display:none}
+    h1{font-size:25px}.qtitle{font-size:20px}
+  }
+  @media print{
+    header,footer,#start,#interview,.actions,.toast{display:none!important}
+    body{display:block}
+    main{padding:0}
+    .col{max-width:100%;padding:0}
+    a{color:#000}
+    .t-row,.wait,.important,.done,.annual{break-inside:avoid}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <a class="brand" href="https://ki.ua.paradigmapps.com/">
+      <img class="crest" src="https://jarrodharrington85-ux.github.io/KIR-form-builders/mtcic-logo.png" alt="business.gov.ki logo" onerror="this.style.display='none'">
+      <span><span class="wordmark">business.gov.ki</span>
+      <span class="ministry">Ministry of Tourism, Commerce, Industry and Cooperatives</span></span>
+    </a>
+    <a class="home" href="https://ki.ua.paradigmapps.com/"><span aria-hidden="true">&larr;</span> Home</a>
+  </div>
+  <div class="head-mobile">
+    <a href="https://ki.ua.paradigmapps.com/" aria-label="Home">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFE066" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      <span class="mh-brand">business.gov.ki</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="col">
+    <p class="eyebrow bn-hidden" id="eyebrow">Your re-registration plan</p>
+
+    <!-- START -->
+    <section id="start" class="start">
+      <div class="notice"><p>You must re-register by <strong class="due">31 March 2027</strong>.</p></div>
+      <h1>Get your re-registration plan</h1>
+      <p>Kiribati is moving to the new Business Names Act. All business name owners must re-register on the Online Business Registry. There is <strong>no fee</strong>, and MTCIC no longer accepts paper forms.</p>
+      <p>Re-registration has four steps:</p>
+      <ol class="overview">
+        <li><span class="ov-rail"><span class="ov-circle">1</span></span><span class="ov-text">Create your online account</span></li>
+        <li><span class="ov-rail"><span class="ov-circle">2</span></span><span class="ov-text">Link your online account to your business</span></li>
+        <li><span class="ov-rail"><span class="ov-circle">3</span></span><span class="ov-text">Confirm your business name details</span></li>
+        <li><span class="ov-rail"><span class="ov-circle">4</span></span><span class="ov-text">Submit your form and required documents through your online account</span></li>
+      </ol>
+      <p class="sub">It takes place over several days, with short waits while MTCIC reviews each step.</p>
+      <p>Answer a few questions to get your plan.</p>
+      <button class="startbtn" id="start-btn">Start now <span aria-hidden="true">&rarr;</span></button>
+    </section>
+
+    <!-- INTERVIEW -->
+    <section id="interview" class="hidden">
+      <div id="qhost"></div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="back-btn"><span aria-hidden="true">&larr; </span>Back</button>
+        <div class="btn-spacer"></div>
+        <button class="btn" id="next-btn" disabled>Continue<span aria-hidden="true"> &rarr;</span></button>
+      </div>
+    </section>
+
+    <!-- PLAN -->
+    <section id="plan" class="hidden">
+      <h1 id="plan-h1">Your plan</h1>
+      <p class="plan-due">Re-register by <strong class="due">31 March 2027</strong>.</p>
+
+      <div class="journey" id="journey"></div>
+
+      <div class="annual">
+        <h3>After re-registration: annual returns</h3>
+        <p>You must file an <strong>annual return every year</strong> to keep your business name. MTCIC emails you when it is due; if it is not filed, your name will be removed. <a href="https://ki.ua.paradigmapps.com/public/howto.aspx?cn=FileAnnualReturn&ctk=CompanyHowTo#ar-business" target="_blank" rel="noopener noreferrer">Learn about annual returns<svg class="exticon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M19 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg></a>.</p>
+      </div>
+
+      <p class="moredetail">For detailed instructions, see the <a href="https://ki.ua.paradigmapps.com/public/howto.aspx?cn=ReRegisterCompany&ctk=CompanyHowTo#reregister-business" target="_blank" rel="noopener noreferrer">step-by-step page<svg class="exticon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M19 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg></a>.</p>
+
+      <div class="actions">
+        <a class="btn btn-green" href="https://ki.ua.paradigmapps.com/public/setupaccount.aspx" target="_blank" rel="noopener noreferrer">Create an account <span aria-hidden="true">&rarr;</span></a>
+        <button class="btn btn-ghost" id="print-btn"><svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>Print</button>
+        <button class="btn btn-ghost" id="share-btn">Share this plan</button>
+        <a class="startagain" href="#" id="restart">Start again</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-wrap">
+    <div class="foot-row">
+      <div class="foot-min">Ministry of Tourism, Commerce, Industry and Cooperatives</div>
+      <span class="foot-sup">Proudly supported by</span>
+    </div>
+    <div class="foot-logo-row">
+      <div class="foot-logo"><img src="https://jarrodharrington85-ux.github.io/KIR-form-builders/footer-logo.jpg" alt="Supported by ADB, Australian Aid, and New Zealand Aid"
+        onerror="this.parentElement.innerHTML='ADB \u00b7 Australian Aid \u00b7 NZ Aid'"></div>
+    </div>
+  </div>
+  <div class="foot-copy">Copyright &copy; Ministry of Tourism, Commerce, Industry, and Cooperatives 2026</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var QUESTIONS=[
+    {key:'who',title:'Who are you?',help:'This tells us which steps apply to you.',
+     options:[['owner','I am the owner of this business'],['helper','I work for the owner, or I am an agent']]},
+    {key:'name',title:'What is your name?',help:'Optional. Your name will appear on your plan.',type:'text'},
+    {key:'email',title:'Do you have an email address?',help:'An email address is required to create your online user account. MTCIC uses it to notify you at each step and to remind you when your annual return is due.',
+     notes:{no:'You need an email address to create your online user account. Set up a free account, for example a Gmail account.'},
+     options:[['yes','Yes'],['no','No, not yet']]},
+    {key:'id',title:'Do you have a photo ID?',help:'A passport, national ID card, or driver\u2019s licence. This is required to verify your identity.',
+     notes:{no:'You need a photo ID to create your online user account. <a href="https://ki.ua.paradigmapps.com/public/help.aspx?cn=Aboutus#contact-us" target="_blank" rel="noopener noreferrer">Contact MTCIC<svg class="exticon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M19 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg></a> for further information.'},
+     options:[['yes','Yes'],['no','No, not yet']]},
+    {key:'authorised',title:'Are you authorised by the owner to re-register on their behalf?',
+     showIf:function(a){return a.who==='helper';},
+     notes:{yes:'You will need a letter of authority from the owner as proof. Ask the owner to provide one now, so it is ready when you request authority (Step 2).',no:'You cannot re-register on the owner\u2019s behalf until they authorise you. Ask the owner to provide a letter of authority, or ask the owner to re-register themselves.'},
+     options:[['yes','Yes'],['no','No']]}
+  ];
+
+  var answers={}, idx=0;
+  var qhost=document.getElementById('qhost'), nextBtn=document.getElementById('next-btn'), backBtn=document.getElementById('back-btn');
+  var start=document.getElementById('start'), interview=document.getElementById('interview'), plan=document.getElementById('plan'), eyebrow=document.getElementById('eyebrow');
+
+  function order(){
+    var o=[];
+    for(var i=0;i<QUESTIONS.length;i++){ if(!QUESTIONS[i].showIf||QUESTIONS[i].showIf(answers)) o.push(i); }
+    return o;
+  }
+
+  document.getElementById('start-btn').addEventListener('click',function(){
+    start.classList.add('hidden'); interview.classList.remove('hidden'); eyebrow.classList.remove('bn-hidden'); idx=0; renderQuestion(); window.scrollTo(0,0);
+  });
+
+  function renderQuestion(){
+    var ord=order(), q=QUESTIONS[ord[idx]];
+    var html='<p class="qstep">Question '+(idx+1)+' of '+ord.length+'</p>'+
+             '<h2 class="qtitle">'+q.title+'</h2>'+(q.help?'<p class="qhelp">'+q.help+'</p>':'');
+    if(q.type==='text'){
+      html+='<div class="textfield"><input type="text" id="textinput" autocomplete="off" placeholder="Type your name (optional)" value="'+(answers[q.key]||'')+'"></div>';
+    } else {
+      html+='<div class="options">'+q.options.map(function(o){
+        var c=answers[q.key]===o[0]?' checked':'';
+        return '<label class="opt'+(c?' sel':'')+'"><input type="radio" name="'+q.key+'" value="'+o[0]+'"'+c+'><span>'+o[1]+'</span></label>';
+      }).join('')+'</div>';
+      if(q.notes) html+='<div class="qnote'+(answers[q.key]?'':' bn-hidden')+'" id="qnote"></div>';
+    }
+    qhost.innerHTML=html;
+    if(q.type==='text'){
+      nextBtn.disabled=false; nextBtn.innerHTML=(answers[q.key]?'Continue':'Skip')+' <span aria-hidden="true">&rarr;</span>';
+      var ti=document.getElementById('textinput');
+      ti.addEventListener('input',function(){answers[q.key]=ti.value.trim();nextBtn.innerHTML=(ti.value.trim()?'Continue':'Skip')+' <span aria-hidden="true">&rarr;</span>';});
+      ti.focus();
+    } else {
+      nextBtn.disabled=!answers[q.key]; nextBtn.innerHTML='Continue <span aria-hidden="true">&rarr;</span>';
+      var noteEl=document.getElementById('qnote');
+      function showNote(v){ if(!noteEl) return; if(q.notes&&q.notes[v]){ noteEl.innerHTML=q.notes[v]; noteEl.classList.remove('bn-hidden'); } else { noteEl.classList.add('bn-hidden'); noteEl.innerHTML=''; } }
+      if(answers[q.key]) showNote(answers[q.key]);
+      qhost.querySelector('.options').addEventListener('change',function(e){
+        answers[q.key]=e.target.value; nextBtn.disabled=false;
+        qhost.querySelectorAll('.opt').forEach(function(o){o.classList.toggle('sel',o.contains(e.target));});
+        showNote(e.target.value);
+      });
+    }
+  }
+
+  nextBtn.addEventListener('click',function(){
+    if(idx<order().length-1){idx++;renderQuestion();window.scrollTo(0,0);} else {buildPlan();}
+  });
+  backBtn.addEventListener('click',function(){
+    if(idx>0){idx--;renderQuestion();} else {interview.classList.add('hidden');start.classList.remove('hidden');eyebrow.classList.add('bn-hidden');}
+    window.scrollTo(0,0);
+  });
+  document.getElementById('restart').addEventListener('click',function(e){
+    e.preventDefault();answers={};idx=0;plan.classList.add('hidden');start.classList.remove('hidden');eyebrow.classList.add('bn-hidden');window.scrollTo(0,0);
+  });
+
+  function buildPlan(){
+    var name=(answers.name||'').trim();
+    document.getElementById('plan-h1').textContent=name?('Your plan, '+name):'Your plan';
+
+    var proof=answers.who==='owner'
+      ? 'Upload your photo ID as your proof of authority.'
+      : 'Upload a letter of authority from the owner as your proof of authority.';
+    var reason=answers.who==='owner' ? 'I am the owner' : 'Authorised by owner';
+
+    var j='';
+    j+='<div class="t-row"><div class="t-rail"><div class="t-circle">1</div></div><div class="t-content"><h3>Create your online account</h3>'+
+       '<p>On the website, tap <strong>CREATE ACCOUNT</strong>, enter your details, upload your photo ID, and submit.</p>'+
+       '<p class="do-req">Required: an email address and a photo ID.</p>'+
+       '<div class="wait"><p class="wlbl">Wait for approval</p><p>MTCIC reviews your account and emails you when it is approved. This usually takes a few days.</p></div>'+
+       '</div></div>';
+
+    j+='<div class="t-row"><div class="t-rail"><div class="t-circle">2</div></div><div class="t-content"><h3>Link your online account to your business</h3>'+
+       '<p>Connecting your account to your business name allows you to file on behalf of the business name. Once approved, you can manage the access of other people.</p>'+
+       '<p>Log in, search for your business, open the record, and tap <strong>REQUEST ENTITY AUTHORITY</strong>. '+proof+'</p>'+
+       '<p class="do-reason">In the reason field, you may enter: \u201C'+reason+'\u201D</p>'+
+       '<div class="wait"><p class="wlbl">Wait for approval</p><p>MTCIC reviews your request and emails you when authority is approved. You may complete the BN-0 form (Step 3) while you wait.</p></div>'+
+       '</div></div>';
+
+    j+='<div class="t-row"><div class="t-rail"><div class="t-circle">3</div></div><div class="t-content"><h3>Confirm your business name details</h3>'+
+       '<p>Linking gave you access to your record. Now confirm your business\u2019s details: open the <a href="https://jarrodharrington85-ux.github.io/KIR-form-builders/bn-forms.html?form=bn0&from=reregister-business" target="_blank" rel="noopener noreferrer"><strong>BN-0</strong> form<svg class="exticon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M19 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg></a>, complete it, and it is saved as a file on your device.</p>'+
+       '<p class="do-req">Required: The <strong>BN-0</strong> cover page checklist will tell you what you need to upload with your re-registration application.</p>'+
+       '<div class="important"><p class="ilbl">Important</p><p>Once you fill out <strong>BN-0</strong>, you must still upload it and any required supporting documents to the Online Business Registry.</p></div>'+
+       '</div></div>';
+
+    j+='<div class="t-row"><div class="t-rail"><div class="t-circle">4</div></div><div class="t-content"><h3>Upload and submit to the registry</h3>'+
+       '<p>Log in, select your business, and tap the <strong>RE-REGISTER</strong> button on the business record page.</p>'+
+       '<p>Upload your saved form, a photo ID for each owner, and any other documents listed on the cover page checklist. Click <strong>SUBMIT</strong> and go through the checkout screen. <strong>There is no fee.</strong></p>'+
+       '<div class="done"><p class="wlbl">What happens next</p><p>MTCIC reviews your application. They will email you when your business name is re-registered, or if any details require correction.</p></div>'+
+       '</div></div>';
+
+    document.getElementById('journey').innerHTML=j;
+    interview.classList.add('hidden'); plan.classList.remove('hidden'); window.scrollTo(0,0);
+  }
+
+  var toast=document.getElementById('toast');
+  document.getElementById('print-btn').addEventListener('click',function(){window.print();});
+  document.getElementById('share-btn').addEventListener('click',function(){
+    var url=window.location.href, title='Re-register your business name \u2014 business.gov.ki',
+        text='Step-by-step plan to re-register your business name in Kiribati.';
+    if(navigator.share){navigator.share({title:title,text:text,url:url}).catch(function(){});}
+    else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(function(){tmsg('Link copied');}).catch(function(){mail(title,text,url);});}
+    else {mail(title,text,url);}
+  });
+  function mail(t,x,u){window.location.href='mailto:?subject='+encodeURIComponent(t)+'&body='+encodeURIComponent(x+'\n\n'+u);}
+  function tmsg(m){toast.textContent=m;toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}
+})();
+</script>
+</body>
+</html>
