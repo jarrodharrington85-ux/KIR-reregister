@@ -328,7 +328,7 @@
     window.scrollTo(0,0);
   });
   document.getElementById('restart').addEventListener('click',function(e){
-    e.preventDefault();answers={};idx=0;plan.classList.add('hidden');start.classList.remove('hidden');window.scrollTo(0,0);
+    e.preventDefault();answers={};idx=0;plan.classList.add('hidden');start.classList.remove('hidden');if(history.replaceState)history.replaceState(null,'',location.pathname);window.scrollTo(0,0);
   });
 
   function buildPlan(){
@@ -367,7 +367,48 @@
        '</div></div>';
 
     document.getElementById('journey').innerHTML=j;
-    interview.classList.add('hidden'); plan.classList.remove('hidden'); window.scrollTo(0,0);
+    interview.classList.add('hidden'); start.classList.add('hidden'); plan.classList.remove('hidden'); syncUrl(); window.scrollTo(0,0);
+  }
+
+  function planParams(){
+    var parts=[];
+    for(var i=0;i<QUESTIONS.length;i++){
+      var k=QUESTIONS[i].key, v=answers[k];
+      if(v!==undefined&&v!==null&&v!=='') parts.push(encodeURIComponent(k)+'='+encodeURIComponent(v));
+    }
+    return parts.join('&');
+  }
+  function syncUrl(){
+    if(!history.replaceState) return;
+    var qs=planParams();
+    history.replaceState(null,'',location.pathname+(qs?('?'+qs):''));
+  }
+  function loadFromUrl(){
+    var params;
+    try{ params=new URLSearchParams(location.search); }catch(e){ return false; }
+    var cand={};
+    for(var i=0;i<QUESTIONS.length;i++){
+      var q=QUESTIONS[i], k=q.key;
+      if(!params.has(k)) continue;
+      var raw=params.get(k);
+      if(q.type==='text'){
+        var t=(raw||'').trim().slice(0,80);
+        if(t) cand[k]=t;
+      } else {
+        var ok=false;
+        for(var n=0;n<q.options.length;n++){ if(q.options[n][0]===raw){ok=true;break;} }
+        if(!ok) return false;
+        cand[k]=raw;
+      }
+    }
+    for(var c=0;c<QUESTIONS.length;c++){
+      var cq=QUESTIONS[c];
+      if(cq.showIf&&cand[cq.key]!==undefined&&!cq.showIf(cand)) delete cand[cq.key];
+    }
+    if(!cand.who) return false;
+    answers=cand;
+    buildPlan();
+    return true;
   }
 
   var toast=document.getElementById('toast');
@@ -381,6 +422,8 @@
   });
   function mail(t,x,u){window.location.href='mailto:?subject='+encodeURIComponent(t)+'&body='+encodeURIComponent(x+'\n\n'+u);}
   function tmsg(m){toast.textContent=m;toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}
+
+  loadFromUrl();
 })();
 </script>
 </body>
