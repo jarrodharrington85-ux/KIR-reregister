@@ -153,6 +153,9 @@
     .head-mobile .mh-brand{font-size:16px}
     footer{display:none}
     h1{font-size:25px}.qtitle{font-size:20px}
+    .actions{flex-direction:column;align-items:stretch}
+    .actions .btn{width:100%;justify-content:center}
+    .startagain{align-self:center;margin-top:6px}
   }
   @media print{
     header,footer,#start,#interview,.actions,.toast{display:none!important}
@@ -186,8 +189,6 @@
 
 <main>
   <div class="col">
-    <p class="eyebrow bn-hidden" id="eyebrow">Your re-registration plan</p>
-
     <!-- START -->
     <section id="start" class="start">
       <div class="notice"><p>You must re-register by <strong class="due">31 March 2027</strong>.</p></div>
@@ -275,7 +276,7 @@
 
   var answers={}, idx=0;
   var qhost=document.getElementById('qhost'), nextBtn=document.getElementById('next-btn'), backBtn=document.getElementById('back-btn');
-  var start=document.getElementById('start'), interview=document.getElementById('interview'), plan=document.getElementById('plan'), eyebrow=document.getElementById('eyebrow');
+  var start=document.getElementById('start'), interview=document.getElementById('interview'), plan=document.getElementById('plan');
 
   function order(){
     var o=[];
@@ -284,7 +285,7 @@
   }
 
   document.getElementById('start-btn').addEventListener('click',function(){
-    start.classList.add('hidden'); interview.classList.remove('hidden'); eyebrow.classList.remove('bn-hidden'); idx=0; renderQuestion(); window.scrollTo(0,0);
+    start.classList.add('hidden'); interview.classList.remove('hidden'); idx=0; renderQuestion(); window.scrollTo(0,0);
   });
 
   function renderQuestion(){
@@ -323,11 +324,11 @@
     if(idx<order().length-1){idx++;renderQuestion();window.scrollTo(0,0);} else {buildPlan();}
   });
   backBtn.addEventListener('click',function(){
-    if(idx>0){idx--;renderQuestion();} else {interview.classList.add('hidden');start.classList.remove('hidden');eyebrow.classList.add('bn-hidden');}
+    if(idx>0){idx--;renderQuestion();} else {interview.classList.add('hidden');start.classList.remove('hidden');}
     window.scrollTo(0,0);
   });
   document.getElementById('restart').addEventListener('click',function(e){
-    e.preventDefault();answers={};idx=0;plan.classList.add('hidden');start.classList.remove('hidden');eyebrow.classList.add('bn-hidden');window.scrollTo(0,0);
+    e.preventDefault();answers={};idx=0;plan.classList.add('hidden');start.classList.remove('hidden');window.scrollTo(0,0);
   });
 
   function buildPlan(){
