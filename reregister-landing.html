@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Re-register your business — business.gov.ki</title>
+<meta property="og:title" content="Re-register your business — business.gov.ki">
+<meta property="og:description" content="All Kiribati businesses must re-register on the new Online Business Registry by 31 March 2027. It is free. Get your step-by-step plan.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --green:#146151;--green-deep:#0d4a3e;--green-text:#1E5F53;--green-border:#002a2b;
+    --gold:#FFE066;--focus:#ffdd00;--blue:#0052cc;--blue-dark:#003d99;--due:#d4351c;
+    --ink:#333;--mute:#666;--line:#ddd;--divider:#e5e7eb;--bg:#f3f2f1;
+    --footer:#222;
+    --col:680px;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:var(--sans); color:var(--ink); background:#fff; line-height:1.6;
+        -webkit-font-smoothing:antialiased; display:flex; flex-direction:column; min-height:100vh; }
+  a{ color:var(--blue); text-decoration:underline; text-underline-offset:2px; }
+  a:hover{ color:var(--blue-dark); }
+  .wrap{ width:100%; max-width:var(--col); margin:0 auto; padding:0 20px; flex:1 0 auto; }
+
+  header{ background:var(--green); border-bottom:5px solid var(--green-border); position:sticky; top:0; z-index:100; }
+  .head-inner{ display:flex; align-items:center; gap:15px; max-width:1200px; margin:0 auto; padding:15px 0; }
+  .brand{ display:flex; align-items:center; gap:15px; text-decoration:none; min-width:0; }
+  .crest{ max-width:65px; max-height:65px; border-radius:50%; display:block; flex:0 0 auto; }
+  .wordmark{ display:block; color:var(--gold); font-weight:700; font-size:24px; line-height:1.1; }
+  .ministry{ display:block; color:#fff; font-weight:500; font-size:19px; line-height:1.2; margin-top:2px; }
+  .home{ margin-left:auto; background:#fff; color:var(--green); font-weight:700; font-size:16px; border-radius:6px;
+         border:2px solid var(--green); padding:10px 20px; text-decoration:none; white-space:nowrap;
+         display:inline-flex; align-items:center; gap:8px; }
+  .head-mobile{ display:none; }
+  .head-mobile a{ display:flex; align-items:center; gap:8px; text-decoration:none; padding:14px 16px;
+                  min-height:48px; width:100%; -webkit-tap-highlight-color:rgba(255,255,255,.1); }
+  .head-mobile a:active{ background:rgba(0,0,0,.15); }
+  .head-mobile svg{ flex-shrink:0; }
+  .head-mobile .mh-brand{ color:var(--gold); font-weight:700; font-size:18px; letter-spacing:.01em; }
+
+  h1{ font-size:1.95rem; line-height:1.2; margin:24px 0 12px; }
+  .lede{ font-size:1.12rem; margin:0 0 22px; }
+
+  .deadline{ border-left:6px solid var(--due); background:var(--bg); padding:12px 16px; margin:0 0 24px; }
+  .deadline .d-date{ color:var(--due); font-weight:700; font-size:1.15rem; display:block; }
+  .deadline .d-sub{ font-size:.95rem; margin-top:2px; }
+
+  .reasons{ list-style:none; padding:0; margin:0 0 26px; display:grid; gap:13px; }
+  .reasons li{ display:flex; gap:11px; align-items:flex-start; }
+  .reasons .tick{ color:var(--green); font-weight:700; font-size:1.1rem; line-height:1.4; flex:none; }
+  .applies{ color:var(--mute); font-size:.95rem; margin:0 0 26px; }
+
+  .btn-primary{ display:inline-flex; align-items:center; justify-content:center; gap:10px;
+                background:var(--green); color:#fff; font-size:1.15rem; font-weight:700;
+                border:none; border-radius:4px; padding:16px 24px; text-decoration:none; cursor:pointer; }
+  .btn-primary:hover{ background:var(--green-deep); }
+  .btn-arr{ font-size:1.3rem; line-height:1; }
+
+  .choose{ margin:26px 0 8px; scroll-margin-top:80px; }
+  .choose.is-collapsed{ display:none; }
+  .choose h2{ font-size:1.35rem; margin:0 0 14px; }
+  .choices{ display:grid; gap:14px; }
+  .choice{ display:block; text-decoration:none; color:var(--ink); background:#fff;
+           border:2px solid var(--green); border-radius:6px; padding:18px; }
+  .choice:hover{ background:#f0f6f4; }
+  .c-title{ display:flex; align-items:center; justify-content:space-between;
+            font-size:1.15rem; font-weight:700; color:var(--green); }
+  .c-sub{ display:block; margin-top:6px; color:var(--mute); font-size:.95rem; }
+  .c-arr{ color:var(--green); font-size:1.35rem; line-height:1; }
+  .notsure{ margin-top:16px; font-size:.95rem; color:var(--mute); }
+
+  .btn-primary:focus-visible, .choice:focus-visible, a:focus-visible, #choose-title:focus-visible{
+    outline:3px solid var(--focus); outline-offset:2px; }
+
+  footer{ flex-shrink:0; background:var(--footer); color:#fff; padding:30px 15px 0; margin-top:auto; }
+  .foot-wrap{ max-width:1200px; margin:0 auto; }
+  .foot-row{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; }
+  .foot-min{ font-weight:700; font-size:18px; color:#fff; line-height:1.3; }
+  .foot-sup{ font-weight:600; font-size:16px; color:#E0E0E0; }
+  .foot-logo-row{ display:flex; justify-content:flex-end; margin-bottom:25px; }
+  .foot-logo{ background:#fff; padding:12px 15px; display:inline-block; border-radius:4px; }
+  .foot-logo img{ max-height:55px; width:auto; display:block; }
+  .foot-copy{ margin-top:10px; padding-top:20px; border-top:1px solid #444; text-align:center;
+              font-size:13px; color:#999; padding-bottom:20px; }
+
+  .faqs{ margin:40px 0 0; border-top:1px solid var(--line); padding-top:24px; }
+  .faqs h2{ font-size:1.4rem; margin:0 0 18px; }
+  .faq{ margin:0 0 20px; }
+  .faq h3{ font-size:1.08rem; font-weight:700; margin:0 0 6px; }
+  .faq p{ margin:0; }
+  .more{ margin:26px 0 40px; }
+  .more a{ color:var(--blue); text-decoration:underline; text-underline-offset:2px; }
+  .more a:hover{ color:var(--blue-dark); }
+  .more .ext{ width:.85em; height:.85em; vertical-align:-1px; margin-left:4px; }
+
+  @media (min-width:600px){
+    .choices{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:1230px){ .head-inner{ padding:15px; } }
+  @media (max-width:1000px){
+    .head-inner{ display:none; }
+    .head-mobile{ display:block; }
+    header{ border-bottom-width:3px; }
+    .foot-row{ flex-direction:column; align-items:flex-start; gap:4px; }
+    .foot-logo-row{ justify-content:flex-start; }
+  }
+  @media (max-width:600px){
+    .head-mobile a{ padding:12px; }
+    .head-mobile .mh-brand{ font-size:16px; }
+    footer{ display:none; }
+    h1{ font-size:1.7rem; }
+    .btn-primary{ width:100%; }
+  }
+</style>
+<noscript><style>.choose.is-collapsed{ display:block; }</style></noscript>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <a class="brand" href="https://ki.ua.paradigmapps.com/">
+      <img class="crest" src="https://jarrodharrington85-ux.github.io/KIR-form-builders/mtcic-logo.png" alt="business.gov.ki logo" onerror="this.style.display='none'">
+      <span><span class="wordmark">business.gov.ki</span>
+      <span class="ministry">Ministry of Tourism, Commerce, Industry and Cooperatives</span></span>
+    </a>
+    <a class="home" href="https://ki.ua.paradigmapps.com/"><span aria-hidden="true">&larr;</span> Home</a>
+  </div>
+  <div class="head-mobile">
+    <a href="https://ki.ua.paradigmapps.com/" aria-label="Home">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFE066" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      <span class="mh-brand">business.gov.ki</span>
+    </a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>All businesses must re-register</h1>
+  <p class="lede">Kiribati's business names and companies laws have changed. All current business names and companies must re-register to stay active.</p>
+
+  <div class="deadline">
+    <span class="d-date">Re-register before 31 March 2027</span>
+    <span class="d-sub">Start early — apply by 15 March 2027 to be sure your re-registration is processed in time.</span>
+  </div>
+
+  <ul class="reasons">
+    <li><span class="tick" aria-hidden="true">✓</span><span><b>It is free.</b> There is no fee to re-register.</span></li>
+    <li><span class="tick" aria-hidden="true">✓</span><span><b>Do it online.</b> Use your phone or a computer — no need to visit an office.</span></li>
+    <li><span class="tick" aria-hidden="true">✓</span><span><b>We will guide you.</b> Answer a few questions and get a step-by-step plan made for you.</span></li>
+  </ul>
+
+  <a id="getplan" class="btn-primary" href="#choose" role="button" aria-expanded="false" aria-controls="choose">
+    Get your plan <span class="btn-arr" aria-hidden="true">&rsaquo;</span>
+  </a>
+
+  <section id="choose" class="choose is-collapsed" aria-labelledby="choose-title">
+    <h2 id="choose-title">What are you re-registering?</h2>
+    <div class="choices">
+      <a class="choice" href="https://jarrodharrington85-ux.github.io/KIR-reregister/BN-reregister.html">
+        <span class="c-title">A business name <span class="c-arr" aria-hidden="true">&rsaquo;</span></span>
+        <span class="c-sub">A name you trade under that is not your own name.</span>
+      </a>
+      <a class="choice" href="https://jarrodharrington85-ux.github.io/KIR-reregister/CO-reregister.html">
+        <span class="c-title">A company <span class="c-arr" aria-hidden="true">&rsaquo;</span></span>
+        <span class="c-sub">A company you set up with one or more shareholders.</span>
+      </a>
+    </div>
+    <p class="notsure">Not sure which you have? A business name is a trading name. A company is incorporated with shareholders.</p>
+  </section>
+
+  <section class="faqs" aria-labelledby="faqs-title">
+    <h2 id="faqs-title">Common questions</h2>
+
+    <div class="faq">
+      <h3>Why do I have to re-register?</h3>
+      <p>MTCIC has moved to a new Online Business Registry to make registering and updating your details easier. The old register has been replaced, so every existing business name and company must re-register on the new system to stay active and keep your details correct.</p>
+    </div>
+
+    <div class="faq">
+      <h3>I have already registered with the KCCI. Do I need to register here too?</h3>
+      <p>Yes. Your Kiribati Chamber of Commerce and Industry (KCCI) membership is not the same as your official registration with the Government.</p>
+    </div>
+
+    <div class="faq">
+      <h3>I have a Business Licence. Do I still need to re-register?</h3>
+      <p>Yes. The Business Licence you got from your local council lets you trade. Registration with MTCIC is your official business record. You need to have both.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Can I do this at the MTCIC office?</h3>
+      <p>Re-registration is done online — from your phone, computer, or other device. There is no paper form. If you are not sure where to start, use the step-by-step plan on this page and it will walk you through it.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Does re-registering mean I am starting a new business?</h3>
+      <p>No. It is the same business, with the same name and the same history. Re-registering only moves your existing record onto the new system — you are not starting again.</p>
+    </div>
+
+    <p class="more"><a href="https://ki.ua.paradigmapps.com/" target="_blank" rel="noopener">Find more guidance on business.gov.ki<svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="opens in a new tab" role="img"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path></svg></a></p>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-wrap">
+    <div class="foot-row">
+      <div class="foot-min">Ministry of Tourism, Commerce, Industry and Cooperatives</div>
+      <span class="foot-sup">Proudly supported by</span>
+    </div>
+    <div class="foot-logo-row">
+      <div class="foot-logo"><img src="https://jarrodharrington85-ux.github.io/KIR-form-builders/footer-logo.jpg" alt="Supported by ADB, Australian Aid, and New Zealand Aid"
+        onerror="this.parentElement.innerHTML='ADB \u00b7 Australian Aid \u00b7 NZ Aid'"></div>
+    </div>
+  </div>
+  <div class="foot-copy">Copyright &copy; Ministry of Tourism, Commerce, Industry, and Cooperatives 2026</div>
+</footer>
+
+<script>
+(function(){
+  var btn = document.getElementById('getplan');
+  var choose = document.getElementById('choose');
+  if(!btn || !choose) return;
+  function reduced(){ return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    choose.classList.remove('is-collapsed');
+    btn.setAttribute('aria-expanded','true');
+    var h = document.getElementById('choose-title');
+    if(h){ h.setAttribute('tabindex','-1'); h.focus(); }
+    choose.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block:'start' });
+  });
+})();
+</script>
+</body>
+</html>
