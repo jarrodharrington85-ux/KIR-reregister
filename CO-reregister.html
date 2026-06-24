@@ -119,6 +119,7 @@
 
   .moredetail{margin:24px 0 0;font-size:16px;color:var(--ink)}
   .actions{margin:24px 0 0;padding-top:24px;border-top:1px solid var(--divider);display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .actions .btn-green{flex:1 1 100%;justify-content:center}
   .startagain{font-size:16px;color:var(--blue)}
   .pico{width:18px;height:18px;flex:0 0 auto}
   .plan-due{margin:0 0 4px;font-size:17px;font-weight:600;color:var(--ink)}
@@ -223,7 +224,8 @@
       <div class="actions">
         <a class="btn btn-green" href="https://ki.ua.paradigmapps.com/public/setupaccount.aspx" target="_blank" rel="noopener noreferrer">Create an account <span aria-hidden="true">&rarr;</span></a>
         <button class="btn btn-ghost" id="print-btn"><svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>Print</button>
-        <button class="btn btn-ghost" id="share-btn">Share this plan</button>
+        <button class="btn btn-ghost" id="share-btn"><svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>Share this plan</button>
+        <button class="btn btn-ghost" id="copy-btn" aria-live="polite"><svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg><span id="copy-label">Copy link</span></button>
         <a class="startagain" href="#" id="restart">Start again</a>
       </div>
     </section>
@@ -269,7 +271,7 @@
      options:[['yes','Yes'],['no','No']]}
   ];
 
-  var answers={}, idx=0;
+  var answers={}, idx=0, planDescriptor='';
   var qhost=document.getElementById('qhost'), nextBtn=document.getElementById('next-btn'), backBtn=document.getElementById('back-btn');
   var start=document.getElementById('start'), interview=document.getElementById('interview'), plan=document.getElementById('plan');
 
@@ -329,6 +331,9 @@
   function buildPlan(){
     var name=(answers.name||'').trim();
     document.getElementById('plan-h1').textContent=name?('Your plan, '+name):'Your plan';
+    var capName=name.slice(0,80);
+    planDescriptor=capName?(capName+'’s company re-registration plan'):'Company re-registration plan';
+    document.title=planDescriptor;
 
     var proof=answers.who==='director'
       ? 'Upload your photo ID as your proof of authority.'
@@ -415,12 +420,38 @@
 
   var toast=document.getElementById('toast');
   document.getElementById('print-btn').addEventListener('click',function(){window.print();});
-  document.getElementById('share-btn').addEventListener('click',function(){
-    var url=window.location.href, title='Re-register your company \u2014 business.gov.ki',
-        text='Step-by-step plan to re-register your company in Kiribati.';
-    if(navigator.share){navigator.share({title:title,text:text,url:url}).catch(function(){});}
-    else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(function(){tmsg('Link copied');}).catch(function(){mail(title,text,url);});}
-    else {mail(title,text,url);}
+  var shareBtn=document.getElementById('share-btn');
+  if(typeof navigator.share==='function'){
+    shareBtn.addEventListener('click',function(){
+      navigator.share({title:planDescriptor,text:planDescriptor,url:location.href}).catch(function(){});
+    });
+  } else {
+    shareBtn.classList.add('hidden');
+  }
+
+  var copyBtn=document.getElementById('copy-btn'), copyLabel=document.getElementById('copy-label'), copyTimer=null;
+  function fallbackCopy(text){
+    var ok=false;
+    try{
+      var ta=document.createElement('textarea');
+      ta.value=text; ta.setAttribute('readonly','');
+      ta.style.position='fixed'; ta.style.top='-1000px'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      ok=document.execCommand('copy');
+      document.body.removeChild(ta);
+    }catch(e){ ok=false; }
+    return ok;
+  }
+  function copied(){
+    copyLabel.textContent='Link copied';
+    if(copyTimer) clearTimeout(copyTimer);
+    copyTimer=setTimeout(function(){copyLabel.textContent='Copy link';copyTimer=null;},1800);
+  }
+  copyBtn.addEventListener('click',function(){
+    var url=location.href;
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(copied,function(){ if(fallbackCopy(url)) copied(); });
+    } else if(fallbackCopy(url)){ copied(); }
   });
   function mail(t,x,u){window.location.href='mailto:?subject='+encodeURIComponent(t)+'&body='+encodeURIComponent(x+'\n\n'+u);}
   function tmsg(m){toast.textContent=m;toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}
