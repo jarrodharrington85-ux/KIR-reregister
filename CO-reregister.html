@@ -389,8 +389,11 @@
 
     if(answers.businessname==='yes'){
       j+='<div class="t-row"><div class="t-rail"><div class="t-circle">5</div></div><div class="t-content"><h3>Re-register your business name</h3>'+
-         '<p>Your company also operates under a registered business name. That business name must be re-registered <strong>separately</strong>, using its own process. You can do this any time before the deadline.</p>'+
-         '<p><a href="https://ki.ua.paradigmapps.com/public/howto.aspx?cn=ReRegisterCompany&ctk=CompanyHowTo#reregister-business" target="_blank" rel="noopener noreferrer">Re-register your business name<svg class="exticon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M19 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg></a></p>'+
+         '<p>Your company also operates under a registered business name. Re-register it <strong>after</strong> your company re-registration is complete, using the <strong>same account</strong>.</p>'+
+         '<p>Log in, search for your business name, and link your account to it by tapping the <strong>REQUEST AUTHORITY</strong> button. Once MTCIC grants your authority, complete the <strong>BN-0</strong> re-registration form.</p>'+
+         // CLEANUP-MIGRATION: this deep-link points at the GitHub-hosted form builder (bn-forms.html, ?form=bn0 opens BN-0 directly).
+         // When the form builders migrate to PA's server, update this href to PA's hosted URL.
+         '<p><a href="https://jarrodharrington85-ux.github.io/KIR-form-builders/bn-forms.html?form=bn0" target="_blank" rel="noopener noreferrer">Open the BN-0 re-registration form<svg class="exticon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M19 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg></a></p>'+
          '</div></div>';
     }
 
